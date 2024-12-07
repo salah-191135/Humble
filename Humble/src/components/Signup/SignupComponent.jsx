@@ -4,9 +4,11 @@ import "./styles.css";
 import Button from "../Button/Button";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
-import { auth, db } from "../../firebase";
+import { auth, db, provider } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+
 
 function SignupComponent() {
     const [name, setName] = useState("");
@@ -81,6 +83,41 @@ function SignupComponent() {
         }
     };
 
+    const SignWithGoogle = (event) => {
+        event.preventDefault();
+        setLoading(true);
+        try {
+            signInWithPopup(auth, provider)
+                .then(async (result) => {
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+                    const credential = GoogleAuthProvider.credentialFromResult(result);
+                    const token = credential.accessToken;
+                    // The signed-in user info.
+                    const user = result.user;
+                    console.log("user :: ", user);
+                    await createUserDocument(user);
+                    navigate("/Dashboard");
+                    toast.success("Welcome back");
+                }).catch((error) => {
+                    // Handle Errors here.
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    // The email of the user's account used.
+                    const email = error.customData.email;
+                    // The AuthCredential type that was used.
+                    const credential = GoogleAuthProvider.credentialFromError(error);
+                    console.log("errorMessage :: ", errorMessage);
+                    toast.error("login failed");
+                    setLoading(false);
+                });
+
+        } catch (error) {
+            toast.error("login failed");
+            setLoading(false);
+
+        }
+    }
+
     const createUserDocument = async (user) => {
         setLoading(true);
         if (!user) return;
@@ -135,7 +172,7 @@ function SignupComponent() {
                         <div className="submit-btn">
                             <Button disabled={loading} text={loading ? "loading..." : "Login with Email"} clickF={SigninWithEmail} blue={true} />
                             <p style={{ textAlign: "center", margin: "0 1rem" }}>or</p>
-                            <Button text={loading ? "loading..." : "Login with Google"} blue={true} />
+                            <Button text={loading ? "loading..." : "Login with Google"} blue={true} clickF={SignWithGoogle} />
                         </div>
                     </form>
                     <Button style={{ textAlign: "center" }} text={"Don't Have an Acount? sign up here"} clickF={() => setLogin(!login)}></Button>
@@ -177,7 +214,7 @@ function SignupComponent() {
                         <div className="submit-btn">
                             <Button disabled={loading} text={loading ? "loading..." : "SignUp with Email"} clickF={SignupWithEmail} blue={true} />
                             <p style={{ textAlign: "center", margin: "0 1rem" }}>or</p>
-                            <Button text={loading ? "loading..." : "SignUp with Google"} blue={true} />
+                            <Button text={loading ? "loading..." : "SignUp with Google"} blue={true} clickF={SignWithGoogle} />
                         </div>
                     </form>
                     <Button style={{ textAlign: "center" }} text={'Have an Acount Already?'} clickF={() => setLogin(!login)}></Button>

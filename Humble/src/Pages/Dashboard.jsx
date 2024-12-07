@@ -1,8 +1,16 @@
 import React from 'react'
-
+import Header from '../components/Header'
+import DashboardComponant from "../components/Dashboard/DashboardComponant";
 function Dashboard() {
     return (
-        <div>Dashboard Page</div>
+        <>
+            <>
+                <Header />
+                <div className='wrapper'>
+                    dash
+                </div>
+            </>
+        </>
     )
 }
 
