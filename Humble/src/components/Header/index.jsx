@@ -5,19 +5,20 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from "firebase/auth";
 import { toast } from "react-toastify";
+import userImg from "../../assets/user.svg"
 
+function Header({ name = "" }) {
 
-function Header() {
     const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
 
     useEffect(() => {
         if (user) {
             navigate("/Dashboard");
+        } else {
+            navigate("/");
         }
     }, [user, loading]);
-
-
 
     function logoutfnc() {
         try {
@@ -30,18 +31,20 @@ function Header() {
         } catch (error) {
             toast.error(error);
         }
-        // alert('logout');
     }
 
     return (
         <div className='navbar'>
-            <p className="logo">Humble</p>
-            {user &&
-                (<p className="logo link" onClick={logoutfnc}>
-                    Logout
-                </p>)}
+            <span className="logo">Humble</span>
+            {user && (
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <img src={user.photoURL ? user.photoURL : userImg} height={"40px"} width={"40px"} style={{ borderRadius: "50%" }} />
+                    <button className="logo link" onClick={logoutfnc}>
+                        Logout
+                    </button>
+                </div>
+            )}
         </div>
-
     );
 }
 

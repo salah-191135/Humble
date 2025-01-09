@@ -1,0 +1,118 @@
+/* From Uiverse.io by mrhyddenn */
+.group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-group {
+    position: relative;
+    padding: 20px 0 0;
+    width: 70%;
+    margin-left: 1rem;
+
+}
+
+.search-field {
+    font-family: inherit;
+    width: 100%;
+    margin-right: 1rem;
+    border: none;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 17px;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.search-field::placeholder {
+    color: transparent;
+}
+
+.search-field:placeholder-shown~.form__label {
+    font-size: 17px;
+    cursor: text;
+    top: 20px;
+    left: 0;
+}
+
+.form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 17px;
+    color: #9b9b9b;
+    pointer-events: none;
+}
+
+.search-field:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, var(--theme), var(--theme));
+    border-image-slice: 1;
+}
+
+.search-field:focus~.form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 17px;
+    color: var(--theme);
+    font-weight: 700;
+}
+
+/* reset input */
+.search-field:required,
+.search-field:invalid {
+    box-shadow: none;
+}
+
+.select-input {
+    /* display: inline-bl ock; */
+    width: 20%;
+    margin: 30px 6px 0;
+}
+
+.radio-input {
+    width: 40%;
+    display: inline-flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.CSV {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    gap: 1rem;
+    margin: 1rem;
+    width: 201px;
+}
+
+@media (max-width: 550px) {
+    .group {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .group * {
+        margin: 2px;
+        font-size: 11px;
+        width: 100%;
+    }
+
+    .radio-input {
+        width: 100%;
+        display: inline-flex;
+    }
+
+    .table {
+        overflow: auto;
+    }
+}

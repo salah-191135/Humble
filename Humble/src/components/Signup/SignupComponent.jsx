@@ -29,7 +29,7 @@ function SignupComponent() {
                     .then(async (userCredential) => {
                         // Signed up
                         const user = userCredential.user;
-                        console.log('user => ', user);
+                        // console.log('user => ', user);
                         setName("");
                         setEmail("");
                         setPassword("");
@@ -64,9 +64,7 @@ function SignupComponent() {
                 .then((userCredential) => {
                     // Signed in 
                     const user = userCredential.user;
-                    // ...
                     navigate("/Dashboard");
-
                     toast.success("Welcome back!");
                     setLoading(false);
                 })
@@ -75,7 +73,7 @@ function SignupComponent() {
                     const errorMessage = error.message;
                     toast.error(errorMessage);
                     console.log("errorMessage", errorMessage);
-
+                    setLoading(false);
                 });
         } else {
             toast.error("Email and password are required!");
@@ -110,18 +108,16 @@ function SignupComponent() {
                     toast.error("login failed");
                     setLoading(false);
                 });
-
         } catch (error) {
             toast.error("login failed");
             setLoading(false);
-
         }
+        setLoading(false);
     }
 
     const createUserDocument = async (user) => {
         setLoading(true);
         if (!user) return;
-
         const userRef = doc(db, "users", user.uid);
         const userData = await getDoc(userRef);
 
@@ -185,7 +181,7 @@ function SignupComponent() {
                     <form>
                         <Input
                             type={"text"}
-                            label={"full name"}
+                            label={"Name"}
                             placeholder={"salah idrees"}
                             state={name}
                             setState={setName}

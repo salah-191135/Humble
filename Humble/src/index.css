@@ -1,5 +1,5 @@
 /* @import "~antd/dist/antd.css"; */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 /* Add your custom styles below */
 
 :root {
@@ -8,7 +8,7 @@
   --white: #fff;
   --shadow: 0px 0px 30px 8px rgba(227, 227, 227, 0.75);
 
-  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  font-family: Montserrat, sans-serif, Helvetica, arial;
   line-height: 1.5;
   font-weight: 400;
   /* 
@@ -28,4 +28,25 @@ body {
   /* place-items: center center; */
   min-width: 320px;
   min-height: 100vh;
+}
+
+.custom-input {
+  border-width: 0;
+  border-bottom-width: 1px;
+  width: 100%;
+  padding-bottom: 0.5rem;
+  font-size: 1rem;
+  transition: ease 0.3s;
+}
+
+.custom-input:focus {
+  outline: none;
+  padding: 0.7rem 0;
+  font-size: 1.2rem;
+  transition: ease 0.3s;
+  border-bottom: 1px solid var(--theme);
+}
+
+.custom-input::placeholder {
+  color: #aaa;
 }

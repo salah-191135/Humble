@@ -1,0 +1,44 @@
+* {
+    font-family: Montserrat, sans-serif, Helvetica, arial;
+}
+
+.humble-row {
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem auto;
+    align-items: center;
+    gap: 16px;
+}
+
+.humble-card {
+    box-shadow: var(--shadow);
+    width: calc(90% / 3);
+}
+
+.humble-card p {
+    margin: 0 auto;
+}
+
+.ant-card-head-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+@media (max-width: 550px) {
+    .humble-card {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .ant-card-head-title {
+        text-align: center;
+    }
+
+    .ant-card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
