@@ -8,45 +8,6 @@ Humble is a web application built with React and Vite that helps users manage th
 - View current balance, total income, and total expenses
 - Responsive design for mobile and desktop
 
-## Project Structure
-Humble/
-├── .gitignore
-├── eslint.config.js
-├── index.html
-├── package.json
-├── public/
-├── README.md
-├── src/
-│   ├── App.css
-│   ├── App.jsx
-│   ├── assets/
-│   ├── components/
-│   │   ├── Button/
-│   │   │   ├── Button.jsx
-│   │   │   ├── Button.module.css
-│   │   ├── Cards/
-│   │   │   ├── index.jsx
-│   │   │   ├── styles.css
-│   │   ├── Header/
-│   │   │   ├── index.jsx
-│   │   │   ├── styles.css
-│   │   ├── Input/
-│   │   │   ├── input.css
-│   │   │   ├── Input.jsx
-│   │   ├── modals/
-│   │   │   ├── AddExpense.jsx
-│   │   │   ├── AddIncome.jsx
-│   │   ├── Signup/
-│   │   ├── TransactionTable/
-│   ├── firebase.js
-│   ├── index.css
-│   ├── main.jsx
-│   ├── Pages/
-│   │   ├── Dashboard.jsx
-│   │   ├── Signup.jsx
-├── vite.config.js
-├── LICENSE
-
 
 ## Getting Started
 
